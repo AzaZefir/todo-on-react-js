@@ -1,0 +1,11 @@
+.todo-elem{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    border: 1px solid #2061cb;
+    margin: 10px 20px;
+}
+.text-line-through{
+    text-decoration: line-through;
+}

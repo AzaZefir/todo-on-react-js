@@ -1,0 +1,11 @@
+.create-wrapper{
+    display: grid;
+    grid-template-columns: 1fr 80px;
+    padding: 15px 20px;
+}
+.create-wrapper input{
+    height: 40px;
+}
+.create-wrapper input:placeholder-shown{
+    padding-left: 15px;
+}
