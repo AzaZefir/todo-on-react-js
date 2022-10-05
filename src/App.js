@@ -64,6 +64,7 @@ function App() {
     return <TodoElements deleteTask={deleteTask} id={item.id} text={item.text} status={item.status} />;
     // TodoElem()
   });
+  
   return (
     <div className='App'>
       <Header arrLength={arr.length} arrResult={result} />

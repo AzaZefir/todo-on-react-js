@@ -18,7 +18,11 @@ const CreateTodo = (props) => {
 
   return (
     <form onSubmit={onFormSubmit} className='create-wrapper'>
-      <input value={value} onChange={onInputChange} type='text' placeholder='Добавить задачу' />
+      <input
+        value={value}
+        onChange={onInputChange}
+        type='text'
+        placeholder='Добавить задачу' />
       <button>+ add</button>
     </form>
   );
