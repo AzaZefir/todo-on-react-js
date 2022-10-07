@@ -4,7 +4,7 @@ import './Header.css'
 const Header = (props) => {
     return (
         <div className="wrapper">
-            Todo list ({props.arrResult} / {props.arrLength})
+            Todo list (<span>{props.arrResult} </span>/ <span>{props.arrLength}</span>)
         </div>
     )
 }

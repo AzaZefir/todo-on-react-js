@@ -2,26 +2,10 @@ import './App.css';
 import Header from './components/header/Header';
 import CreateTodo from './components/createTodo/CreateTodo';
 import TodoElements from './components/todoElement/TodoElements';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
-  const [arr, setArr] = useState([
-    {
-      id: 1,
-      text: 'Купить хлеб',
-      status: true,
-    },
-    {
-      id: 2,
-      text: 'Купить пряники',
-      status: false,
-    },
-    {
-      id: 3,
-      text: 'Купить фанту',
-      status: true,
-    },
-  ]);
+  const [arr, setArr] = useState(JSON.parse(localStorage.getItem('todoLists')) || []);
   // const arr = [
   //   {
   //     text: 'Купить хлеб',
@@ -45,10 +29,14 @@ function App() {
   //   }
   // ]
 
+  useEffect(() => {
+    console.log('state arr is changed');
+    localStorage.setItem('todoLists', JSON.stringify(arr))
+  }, [arr])
+
   const result = arr.reduce((acc, currentItem) => {
     return acc + currentItem.status;
   }, 0);
-  // console.log(newArr);
 
   const addTask = (newText) => {
     setArr([...arr, { text: newText, status: false, id: Date.now() }]);
@@ -60,11 +48,40 @@ function App() {
     });
     setArr(task);
   };
+
+  const statusChange = (id) => {
+    const status = arr.map((item) => {
+      if (item.id === id) {
+        return {...item, status: !item.status}
+      }
+      return item
+    })
+    setArr(status)
+  }
+  const onEdit = (id,newText) => {
+    const edited = arr.map((item) => {
+      if (item.id === id) {
+        return {...item, text:newText}
+      }
+      return item
+    })
+    setArr(edited)
+  }
+
   const newArr = arr.map((item) => {
-    return <TodoElements deleteTask={deleteTask} id={item.id} text={item.text} status={item.status} />;
+    return (
+      <TodoElements
+        onEdit={onEdit}
+        statusChange={statusChange}
+        deleteTask={deleteTask}
+        id={item.id}
+        text={item.text}
+        status={item.status}
+      />
+    );
     // TodoElem()
   });
-  
+
   return (
     <div className='App'>
       <Header arrLength={arr.length} arrResult={result} />
@@ -78,7 +95,7 @@ function App() {
           <TodoElements text='Купить пряники' status={true} />
           <TodoElements text='Купить фанту' status={false} />
           <TodoElements text='Купить спрайт' status={true} /> */}
-          {newArr}
+          {newArr.length ? newArr : <h1>Список задач пуст!</h1>}
         </div>
       </div>
     </div>

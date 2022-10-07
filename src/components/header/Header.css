@@ -1,7 +1,14 @@
 .wrapper {
     padding: 10px 20px;
     font-size: 20px;
-    font-weight: 600;
-    font-size: 24px;
+    font-weight: 800;
+    font-size: 30px;
     border-bottom: 1px solid rgb(80, 80, 80);
+    text-align: center;
+}
+.wrapper span:first-child{
+    color: orange;
+}
+.wrapper span:last-child{
+    color: green;
 }

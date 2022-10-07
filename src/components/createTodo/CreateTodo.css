@@ -1,11 +1,22 @@
-.create-wrapper{
-    display: grid;
-    grid-template-columns: 1fr 80px;
-    padding: 15px 20px;
+.create-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 80px;
+  padding: 15px 20px;
 }
-.create-wrapper input{
-    height: 40px;
+.create-wrapper input {
+  height: 40px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  border: 1px solid grey;
+  box-shadow: 1px 6px 10px 4px grey;
 }
-.create-wrapper input:placeholder-shown{
-    padding-left: 15px;
+.create-wrapper input:placeholder-shown {
+  padding-left: 15px;
+}
+.create-wrapper button {
+  color: #fff;
+  background-color: #2061cb;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  box-shadow:2px 8px 10px 2px grey;
 }

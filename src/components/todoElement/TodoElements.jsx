@@ -1,19 +1,40 @@
+import { useState } from 'react';
 import './TodoElements.css';
 // props === text='Купить хлеб',status: false || true, deleteTask(), id
 const TodoElements = (props) => {
+  const [isInputShow, setInputShow] = useState(false)
+  const [inputValue, setInputValue] = useState(props.text)
 
   const onDelete = () => {
-    props.deleteTask(props.id)
-  }
+    props.deleteTask(props.id);
+  };
   const onEdit = () => {
-    alert('edited')
+    setInputShow(!isInputShow)
+  };
+  const submit = (e) => {
+    e.preventDefault()
+    props.onEdit(props.id, inputValue)
+    setInputShow(false)
+  }
+  const inputChange = (e) => {
+    setInputValue(e.target.value)
+  }
+  const statusEdit = () => {
+    props.statusChange(props.id)
   }
   return (
     <div className='todo-elem'>
-      <div>
-        <input type='checkbox' checked={props.status} />
-        <span className={props.status === true ? 'text-line-through': ''}>{props.text}</span>
-      </div>
+      {isInputShow ? (
+        <form onSubmit={submit}>
+          <input onChange={inputChange} value={inputValue}  type='text' placeholder='edit text' />
+          <button>save</button>
+        </form>
+      ) : (
+        <div>
+          <input onChange={statusEdit} type='checkbox' checked={props.status} />
+          <span className={props.status === true ? 'text-line-through' : ''}>{props.text}</span>
+        </div>
+      )}
       <div>
         <button onClick={onEdit}>Edit</button>
         <button onClick={onDelete}>Delete</button>
